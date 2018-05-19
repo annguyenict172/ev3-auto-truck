@@ -1,6 +1,0 @@
-Flask
-Flask-SQLAlchemy
-uwsgi
-requests
-Flask-Cors
-httplib2
