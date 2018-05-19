@@ -7,7 +7,7 @@ import {BotService} from '../core/service/bot.service';
   styleUrls: ['./bot.component.css']
 })
 
-export class BotComponent implements OnInit, AfterViewInit, OnChanges {
+export class BotComponent implements OnInit, AfterViewInit {
   @ViewChild('myCanvas') myCanvas: ElementRef;
   public ctx: CanvasRenderingContext2D;
 
@@ -17,15 +17,8 @@ export class BotComponent implements OnInit, AfterViewInit, OnChanges {
   message: any;
 
   ngOnInit(){
-
-  }
-
-  ngOnChanges() {
     this.botService.channel.bind('change-position', data => {
-      console.log('Receiving event...');
-      this.message = data.location_id ;
-      console.log('this.message', this.message);
-      alert(data.location_id);
+      console.log(data.location_id);
     });
   }
 
