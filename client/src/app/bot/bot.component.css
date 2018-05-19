@@ -9,18 +9,23 @@
 }
 
 #bulb4, #bulb6, #bulb8 {
-  margin-left: 510px;
+  margin-left: 545px;
   display: inline;
 }
 
-#bulb5, #bulb7, #bulb9, #bulb10, #bulb11 {
-  margin-left: -140px;
+#bulb5, #bulb7, #bulb9 {
+  margin-left: -163px;
+  display: inline;
+}
+
+#bulb10, #bulb11{
+  margin-left: -172px;
   display: inline;
 }
 #bulb12, #bulb13 {
   display: block;
   margin-top: -45px;
-  margin-left: 120px;
+  margin-left: 112px;
 }
 
 
