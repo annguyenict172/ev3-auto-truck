@@ -1,0 +1,55 @@
+#include <DHT.h>
+#include <DHT_U.h>
+#include <SoftwareSerial.h>
+
+#define DHTPIN 2     // connect pin 2 to this pin
+#define DHTTYPE DHT22   // DHT 22  
+
+// Connect pin 1 (on the left) of the sensor to +5V
+// NOTE: If using a board with 3.3V logic like an Arduino Due connect pin 1
+// to 3.3V instead of 5V!
+// Connect pin 2 of the sensor to whatever your DHTPIN is
+// Connect pin 4 (on the right) of the sensor to GROUND
+
+
+// Initialize DHT sensor.
+DHT dht(DHTPIN, DHTTYPE);
+
+SoftwareSerial BT_Serial(10, 11); // RX, TX
+
+String temp2, humi2; //string that stores the sensor data
+char temp[8];
+char humi[8];
+
+void setup() {
+  BT_Serial.begin(9600);  //BT adapter serial
+  Serial.begin(9600); //debug serial (hardware/USB)
+
+  dht.begin();
+
+  Serial.println("OK!");
+  //BT_Serial.println("BT established!");
+}
+
+void loop() {
+  float temp1 = dht.readTemperature(); // Read temperature as Celsius (the default)
+  float humi1 = dht.readHumidity();
+  temp2 = temp1;
+  humi2 = humi1;
+  for(int i=0;i<8;i++){
+    temp[i] = temp2[i];
+    humi[i] = humi2[i];
+  }
+  Serial.println("read tempareture");
+  Serial.println(temp);
+  Serial.println("read relative humidity");
+  Serial.println(humi);
+  
+  BT_Serial.write('t');
+  BT_Serial.write(temp);
+  BT_Serial.write(humi);
+  
+  // Wait a few seconds between measurements.
+  delay(500);
+  
+}
