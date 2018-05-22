@@ -1,13 +1,36 @@
 
 <div class="container">
-  <div>
-    <h5 style="margin-left: 60px"> Start point
-    </h5>
+  <div style="float: left">
+    <p>warehouse 1:</p>
+    <div>
+      <img style="width: 30px;" src="assets/images/tem.ico" />
+      <p *ngIf="data" style="margin-top: -26px; margin-left: 30px">{{data[0].temperature}}</p>
+      <img style="width: 30px;" src="assets/images/bulb.jpg" />
+      <p *ngIf="data" style="margin-top: -20px; margin-left: 30px">{{data[0].lighting_condition}}</p>
+
+    </div>
   </div>
- <div style="width: 600px">
-   <div style="" *ngFor="let id of srcImage; let i = index" id='bulb{{i}}'>
-     {{i}}<img [src]="srcImage[i]" width="10" height="18">
+  <div style="float: right">
+    <p>warehouse 2:</p>
+    <div>
+      <img style="width: 30px;" src="assets/images/tem.ico" />
+      <p *ngIf="data" style="margin-top: -26px; margin-left: 30px">{{data[1].temperature}}</p>
+      <img style="width: 30px;" src="assets/images/bulb.jpg" />
+      <p *ngIf="data" style="margin-top: -20px; margin-left: 30px">{{data[1].lighting_condition}}</p>
+
+    </div>
+  </div>
+ <div style="clear: both">
+   <div>
+     <h5 style="margin-left: 60px"> Start point
+     </h5>
+   </div>
+   <div style="width: 600px">
+     <div style="" *ngFor="let id of srcImage; let i = index" id='bulb{{i}}'>
+       {{i}}<img [src]="srcImage[i]" width="10" height="18">
+     </div>
    </div>
  </div>
+
 </div>
 
