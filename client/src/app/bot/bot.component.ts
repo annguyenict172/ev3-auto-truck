@@ -1,5 +1,7 @@
-import {AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {BotService} from '../core/service/bot.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-bot',
@@ -7,25 +9,34 @@ import {BotService} from '../core/service/bot.service';
   styleUrls: ['./bot.component.css']
 })
 
-export class BotComponent implements OnInit, AfterViewInit {
+export class BotComponent implements OnInit {
   @ViewChild('myCanvas') myCanvas: ElementRef;
   public ctx: CanvasRenderingContext2D;
 
   constructor(public botService: BotService) {
   }
 
-  message: any;
+  bulb = 'assets/images/pic_bulboff.gif';
+  srcImage = [this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb,
+    this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb];
 
-  ngOnInit(){
+  ngOnInit() {
     this.botService.channel.bind('change-position', data => {
       console.log(data.location_id);
     });
+    this.changeImage(12);
   }
 
-  ngAfterViewInit(): void {
-    this.ctx = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');
-    this.ctx.moveTo(200, 10);
-    this.ctx.lineTo(0, 0);
-    this.ctx.stroke();
+
+  changeImage(id) {
+    console.log(id);
+    for (let i = 0; i < 14; i++) {
+      if (i == id) {
+        this.srcImage[id] = 'assets/images/pic_bulbon.gif';
+      } else {
+        this.srcImage[i] = 'assets/images/pic_bulboff.gif';
+      }
+    }
+
   }
 }

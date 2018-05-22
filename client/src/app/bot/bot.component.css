@@ -1,0 +1,34 @@
+.container {
+  width: 700px;
+  margin: 100px auto;
+}
+
+#bulb0, #bulb1, #bulb2, #bulb3 {
+  margin-left: 120px;
+  display: inline;
+}
+
+#bulb4, #bulb6, #bulb8 {
+  margin-left: 545px;
+  display: inline;
+}
+
+#bulb5, #bulb7, #bulb9 {
+  margin-left: -163px;
+  display: inline;
+}
+
+#bulb10, #bulb11{
+  margin-left: -172px;
+  display: inline;
+}
+#bulb12, #bulb13 {
+  display: block;
+  margin-top: -45px;
+  margin-left: 112px;
+}
+
+
+
+
+
