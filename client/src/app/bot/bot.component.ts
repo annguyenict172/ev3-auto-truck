@@ -12,7 +12,7 @@ declare var $: any;
 export class BotComponent implements OnInit {
   @ViewChild('myCanvas') myCanvas: ElementRef;
   public ctx: CanvasRenderingContext2D;
-
+  data: any;
   constructor(public botService: BotService) {
   }
 
@@ -22,14 +22,18 @@ export class BotComponent implements OnInit {
 
   ngOnInit() {
     this.botService.channel.bind('change-position', data => {
-      console.log(data.location_id);
+      console.log(data);
     });
     this.changeImage(12);
+    this.botService.getData().subscribe(res => {
+      console.log('tem', res);
+      this.data = res;
+    });
   }
 
 
   changeImage(id) {
-    console.log(id);
+    // console.log(id);
     for (let i = 0; i < 14; i++) {
       if (i == id) {
         this.srcImage[id] = 'assets/images/pic_bulbon.gif';
