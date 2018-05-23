@@ -10,35 +10,59 @@ declare var $: any;
 })
 
 export class BotComponent implements OnInit {
-  @ViewChild('myCanvas') myCanvas: ElementRef;
-  public ctx: CanvasRenderingContext2D;
   data: any;
+
   constructor(public botService: BotService) {
   }
 
-  bulb = 'assets/images/pic_bulboff.gif';
-  srcImage = [this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb,
-    this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb];
-
   ngOnInit() {
-    this.changeImage(0);
     this.botService.channel.bind('change-position', data => {
       this.changeImage(data.location_id);
     });
     this.botService.getData().subscribe(res => {
-      console.log('tem', res);
       this.data = res;
     });
+
+    var mapDiv;
+
+    mapDiv = document.getElementById('map');
+
+    var map = [0,-1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1,-1,-1,2,-1,-1,-1,-1,-1,-1,3,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            13,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,5,-1,-1,-1,-1,-1,4,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            12,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,7,-1,-1,-1,-1,-1,6,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            -1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,
+            11,-1,-1,-1,-1,-1,-1,10,-1,-1,-1,-1,-1,-1,9,-1,-1,-1,-1,-1,-1,8];
+
+    map.forEach((point, index) => {
+      let image = document.createElement('img');
+      let anotherDiv = document.createElement('br');
+      image.src = point === -2 ? 'assets/images/white.png' : point === -1 ? 'assets/images/black.png' : 'assets/images/red.png';
+      if (point !== -2 && point !== -1) image.id = `point-${point}`
+      mapDiv.appendChild(image);
+      if (index > 0 && (index + 1) % 22 === 0) mapDiv.appendChild(anotherDiv);
+    });
+    this.changeImage(0);
   }
 
 
   changeImage(id) {
-    // console.log(id);
     for (let i = 0; i < 14; i++) {
+      let image = document.getElementById(`point-${i}`);
       if (i == id) {
-        this.srcImage[id] = 'assets/images/pic_bulbon.gif';
+        image.src = 'assets/images/yellow.png';
       } else {
-        this.srcImage[i] = 'assets/images/pic_bulboff.gif';
+        image.src = 'assets/images/red.png';
       }
     }
 

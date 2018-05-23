@@ -1,36 +1,30 @@
 
 <div class="container">
-  <div style="float: left">
-    <p>warehouse 1:</p>
-    <div>
-      <img style="width: 30px;" src="assets/images/tem.ico" />
-      <p *ngIf="data" style="margin-top: -26px; margin-left: 30px">{{data[0].temperature}}</p>
-      <img style="width: 30px;" src="assets/images/bulb.jpg" />
-      <p *ngIf="data" style="margin-top: -20px; margin-left: 30px">{{data[0].lighting_condition}}</p>
-
+  <h1 class="heading text-center">Warehouses Map</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <div id="map"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Warehouse 1</h5>
+          <img style="width: 30px;" src="assets/images/temperature.png" />
+          <p *ngIf="data" style="margin-top: -26px; margin-left: 30px">{{data[0].temperature}}˚C</p>
+          <img style="width: 30px;" src="assets/images/humidity.png" />
+          <p *ngIf="data" style="margin-top: -20px; margin-left: 30px">{{data[0].lighting_condition}}%</p>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Warehouse 2</h5>
+          <img style="width: 30px;" src="assets/images/temperature.png" />
+          <p *ngIf="data" style="margin-top: -26px; margin-left: 30px">{{data[1].temperature}}˚C</p>
+          <img style="width: 30px;" src="assets/images/humidity.png" />
+          <p *ngIf="data" style="margin-top: -20px; margin-left: 30px">{{data[1].lighting_condition}}%</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div style="float: right">
-    <p>warehouse 2:</p>
-    <div>
-      <img style="width: 30px;" src="assets/images/tem.ico" />
-      <p *ngIf="data" style="margin-top: -26px; margin-left: 30px">{{data[1].temperature}}</p>
-      <img style="width: 30px;" src="assets/images/bulb.jpg" />
-      <p *ngIf="data" style="margin-top: -20px; margin-left: 30px">{{data[1].lighting_condition}}</p>
-
-    </div>
-  </div>
- <div style="clear: both">
-   <div>
-     <h5 style="margin-left: 60px"> Start point
-     </h5>
-   </div>
-   <div style="width: 600px">
-     <div style="" *ngFor="let id of srcImage; let i = index" id='bulb{{i}}'>
-       {{i}}<img [src]="srcImage[i]" width="10" height="18">
-     </div>
-   </div>
- </div>
-
 </div>
 
