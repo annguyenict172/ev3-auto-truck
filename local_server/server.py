@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-import bluetooth
+import json
 from math import *
 import time
+
+import httplib2
+import bluetooth
+
 
 def get_required_data(): # get the temperature and humidity data required from the client
 	
@@ -35,12 +39,17 @@ def main():
     while True:
         count = sock.recv(1).decode('utf-8')
         if count != '':
-            count  # count is the position on the map, 1 - 13
-
-
-
-
-
+            h = httplib2.Http()
+            change_position = h.request(
+                uri='http://api.asnteam09.tk/locations',
+                method='POST',
+                headers={
+                    'Content-Type': 'application/json',
+                },
+                body=json.dumps({
+                    'location_id': count,
+                })
+            )
     sock.close()
         
 
