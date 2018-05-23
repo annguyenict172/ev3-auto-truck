@@ -21,10 +21,10 @@ export class BotComponent implements OnInit {
     this.bulb, this.bulb, this.bulb, this.bulb, this.bulb, this.bulb];
 
   ngOnInit() {
+    this.changeImage(0);
     this.botService.channel.bind('change-position', data => {
-      console.log(data);
+      this.changeImage(data.location_id);
     });
-    this.changeImage(12);
     this.botService.getData().subscribe(res => {
       console.log('tem', res);
       this.data = res;
