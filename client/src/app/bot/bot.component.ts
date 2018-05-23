@@ -58,7 +58,8 @@ export class BotComponent implements OnInit {
 
   changeImage(id) {
     for (let i = 0; i < 14; i++) {
-      let image = document.getElementById(`point-${i}`);
+      let image;
+      image = document.getElementById(`point-${i}`) as HTMLImageElement;
       if (i == id) {
         image.src = 'assets/images/yellow.png';
       } else {
