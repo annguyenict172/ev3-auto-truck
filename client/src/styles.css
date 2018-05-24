@@ -5,9 +5,11 @@ body {
 }
 
 #map img {
-  margin-right: 5px;
+  width: 4.5454%;
 }
 
 #map {
   margin-top: 30px;
+  width: 600px;
+  height: 409.9px;
 }
