@@ -24,4 +24,3 @@ class Warehouse(db.Model):
             'lighting_condition': self.lighting_condition,
             'location_id': self.location_id
         }
-

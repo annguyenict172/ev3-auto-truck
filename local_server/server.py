@@ -23,6 +23,7 @@ def main():
     bd_addr = "D4:36:39:D1:C3:C3" # EV3 Bluetooth Address
     port = 1
     sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+    h = httplib2.Http()
     while(1):
         try:
             sock.connect((bd_addr, port))
@@ -39,6 +40,20 @@ def main():
             warehouse_num = sock.recv(1).decode('utf-8')
             sock.send('g')
             # send these data by http
+            change_information = h.request(
+                uri='http://api.asnteam09.tk/warehouses',
+                method='PUT',
+                headers={
+                    'Content-Type': 'application/json',
+                },
+                body=json.dumps({
+                    'temp_1': temp1,
+                    'temp_2': temp2,
+                    'humi_1': humi1,
+                    'humi_2': humi2,
+                    'warehouse_num': warehouse_num
+                })
+            )
 
             print("get tempeture and humidity data")
         break
@@ -46,6 +61,13 @@ def main():
         if sock.recv(1).decode('utf-8') == 'r': # if receive 'r', means robot ready to go
             print("ok")
             sock.send('r') # send 'r' to tell robot it's ok
+            send_ready_request = h.request(
+                uri='http://api.asnteam09.tk/robots',
+                method='GET',
+                headers={
+                    'Content-Type': 'application/json',
+                }
+            )
             break
 
     while True:
@@ -53,7 +75,6 @@ def main():
         if count != 's': # if receive 's', means robot stop
             break
         else:
-            h = httplib2.Http()
             change_position = h.request(
                 uri='http://api.asnteam09.tk/locations',
                 method='POST',

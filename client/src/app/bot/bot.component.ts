@@ -11,6 +11,7 @@ declare var $: any;
 
 export class BotComponent implements OnInit {
   data: any;
+  robotStatus: String = 'Not Ready';
 
   constructor(public botService: BotService) {
   }
@@ -19,8 +20,17 @@ export class BotComponent implements OnInit {
     this.botService.channel.bind('change-position', data => {
       this.changeImage(data.location_id);
     });
+    this.botService.channel.bind('ready', data => {
+      this.robotStatus = 'Ready';
+    });
     this.botService.getData().subscribe(res => {
       this.data = res;
+    });
+    this.botService.channel.bind('choose-warehouse', data => {
+      this.botService.getData().subscribe(res => {
+        this.data = res;
+        this.chooseWarehouse(data.warehouse_num);
+      });
     });
 
     var mapDiv;
@@ -66,6 +76,11 @@ export class BotComponent implements OnInit {
         image.src = 'assets/images/red.png';
       }
     }
+  }
 
+  chooseWarehouse(warehouseNum) {
+    let id = warehouseNum === 0 ? 'warehouse1' : 'warehouse2';
+    let warehouse = document.getElementById(id);
+    warehouse.style.backgroundColor = "yellow";
   }
 }

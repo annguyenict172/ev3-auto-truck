@@ -6,7 +6,7 @@
       <div id="map"></div>
     </div>
     <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
+      <div id="warehouse1" class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Warehouse 1</h5>
           <img style="width: 30px;" src="assets/images/temperature.png" />
@@ -15,7 +15,7 @@
           <p *ngIf="data" style="margin-top: -20px; margin-left: 30px">{{data[0].lighting_condition}}%</p>
         </div>
       </div>
-      <div class="card" style="width: 18rem;">
+      <div id="warehouse2" class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Warehouse 2</h5>
           <img style="width: 30px;" src="assets/images/temperature.png" />
@@ -26,5 +26,6 @@
       </div>
     </div>
   </div>
+  <h4 id="robot-status" class="text-center">Robot Status: {{ robotStatus }}</h4>
 </div>
 

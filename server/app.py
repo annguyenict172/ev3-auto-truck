@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
 
-from controllers.position import position_bp
 from controllers.warehouse import warehouse_bp
 from models import *
 
@@ -11,7 +10,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'super_secret_key'
 
-app.register_blueprint(position_bp)
 app.register_blueprint(warehouse_bp)
 
 cors = CORS(send_wildcard=True)
