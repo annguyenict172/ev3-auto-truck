@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 export class BotService {
   pusher: any;
   channel: any;
-  private url = 'http://localhost:5000/warehouses';
+  private url = 'http://api.asnteam09.tk/warehouses';
   constructor(private http: HttpClient) {
     this.pusher = new Pusher('bc48ffab0f0d29ebe910', {
       cluster: 'ap1',
