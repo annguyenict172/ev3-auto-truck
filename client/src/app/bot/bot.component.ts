@@ -57,7 +57,20 @@ export class BotComponent implements OnInit {
     map.forEach((point, index) => {
       let image = document.createElement('img');
       let anotherDiv = document.createElement('br');
-      image.src = point === -2 ? 'assets/images/white.png' : point === -1 ? 'assets/images/black.png' : 'assets/images/red.png';
+      switch(point) {
+        case -2:
+          image.src = 'assets/images/white.png';
+          break;
+        case -1:
+          image.src = 'assets/images/black.png';
+          break;
+        case 5:
+        case 7:
+          image.src = 'assets/images/blue.png';
+          break;
+        default:
+          image.src = 'assets/images/red.png';
+      }
       if (point !== -2 && point !== -1) image.id = `point-${point}`
       mapDiv.appendChild(image);
       if (index > 0 && (index + 1) % 22 === 0) mapDiv.appendChild(anotherDiv);
@@ -70,10 +83,11 @@ export class BotComponent implements OnInit {
     for (let i = 0; i < 14; i++) {
       let image;
       image = document.getElementById(`point-${i}`) as HTMLImageElement;
-      if (i == id) {
+      if (i === id) {
         image.src = 'assets/images/yellow.png';
       } else {
-        image.src = 'assets/images/red.png';
+        if (i === 5 || i === 7) image.src = 'assets/images/blue.png';
+        else image.src = 'assets/images/red.png';
       }
     }
   }
