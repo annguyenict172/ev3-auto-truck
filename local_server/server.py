@@ -72,7 +72,7 @@ def main():
 
     while True:
         count = sock.recv(1).decode('utf-8')
-        if count != 's': # if receive 's', means robot stop
+        if count == 's': # if receive 's', means robot stop
             break
         else:
             change_position = h.request(
