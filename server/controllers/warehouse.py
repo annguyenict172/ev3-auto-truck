@@ -45,9 +45,10 @@ def update_warehouse():
     return jsonify({})
 
 
-@warehouse_bp.route('/robots', methods=['GET'])
+@warehouse_bp.route('/robots', methods=['PUT'])
 def update_robot_status():
-    pusher_client.trigger('ans-team-887', 'ready', {})
+    status = request.json.get('status')
+    pusher_client.trigger('ans-team-887', 'change-status', {'status': status})
     return jsonify({})
 
 

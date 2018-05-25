@@ -18,10 +18,12 @@ export class BotComponent implements OnInit {
 
   ngOnInit() {
     this.botService.channel.bind('change-position', data => {
-      this.changeImage(data.location_id);
+      let locationId = data.location_id;
+      if (locationId < 0 || locationId > 13) locationId = 0;
+      this.changeImage(locationId);
     });
-    this.botService.channel.bind('ready', data => {
-      this.robotStatus = 'Ready';
+    this.botService.channel.bind('change-status', data => {
+      this.robotStatus = data.status;
     });
     this.botService.getData().subscribe(res => {
       this.data = res;

@@ -63,16 +63,29 @@ def main():
             sock.send('r') # send 'r' to tell robot it's ok
             send_ready_request = h.request(
                 uri='http://api.asnteam09.tk/robots',
-                method='GET',
+                method='PUT',
                 headers={
                     'Content-Type': 'application/json',
-                }
+                },
+                body=json.dumps({
+                    'status': 'Ready'
+                })
             )
             break
 
     while True:
         count = sock.recv(1).decode('utf-8')
         if count == 's': # if receive 's', means robot stop
+            send_finish_request = h.request(
+                uri='http://api.asnteam09.tk/robots',
+                method='PUT',
+                headers={
+                    'Content-Type': 'application/json',
+                },
+                body=json.dumps({
+                    'status': 'Finish'
+                })
+            )
             break
         else:
             change_position = h.request(
