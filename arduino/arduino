@@ -15,7 +15,7 @@
 // Initialize DHT sensor.
 DHT dht(DHTPIN, DHTTYPE);
 
-SoftwareSerial BT_Serial(10, 11); // RX, TX
+SoftwareSerial BT_Serial(8, 9); // RX, TX
 
 String temp2, humi2; //string that stores the sensor data
 char temp[8];
