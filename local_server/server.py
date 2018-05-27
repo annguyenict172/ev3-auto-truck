@@ -58,7 +58,7 @@ def main():
             print("get tempeture and humidity data")
         break
     while True:
-        if sock.recv(1).decode('utf-8') == 'r': # if receive 'r', means robot ready to go
+        if sock.recv(1024).decode('utf-8') == 'r': # if receive 'r', means robot ready to go
             print("ok")
             sock.send('r') # send 'r' to tell robot it's ok
             send_ready_request = h.request(
@@ -74,7 +74,7 @@ def main():
             break
 
     while True:
-        count = sock.recv(1).decode('utf-8')
+        count = sock.recv(1024).decode('utf-8')
         if count == 's': # if receive 's', means robot stop
             send_finish_request = h.request(
                 uri='http://api.asnteam09.tk/robots',
@@ -95,7 +95,7 @@ def main():
                     'Content-Type': 'application/json',
                 },
                 body=json.dumps({
-                    'location_id': count,
+                    'location_id': int(count),
                 })
             )
 
