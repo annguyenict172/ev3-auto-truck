@@ -4,8 +4,6 @@ from ev3dev.ev3 import *
 from time import sleep
 from threading import Thread
 import bluetooth
-from get_warehouse_info import *
-# from communicate_with_server import *
 import bluetooth
 
 mB = LargeMotor('outB')
@@ -95,8 +93,12 @@ t1 = Thread(target=buttonStop)
 t1.start()
 
 
-global warehouse_num, temp1, temp2, humi1, humi2 
-warehouse_num, temp1, temp2, humi1, humi2 = get_warehouse_info()
+global warehouse_num, temp1, temp2, humi1, humi2
+warehouse_num = 2
+temp1 = 10
+humi1 = 10
+temp2 = 20
+humi2 = 20 
 
 t2 = Thread(target=communicate_with_server)
 t2.start()
