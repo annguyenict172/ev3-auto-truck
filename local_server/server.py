@@ -20,7 +20,7 @@ def get_required_data(): # get the temperature and humidity data required from t
 
 def main():
     #temp, humi = get_required_data()
-    bd_addr = "D4:36:39:D1:C3:C3" # EV3 Bluetooth Address
+    bd_addr = "00:17:E9:F8:72:06" # EV3 Bluetooth Address
     port = 1
     sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
     h = httplib2.Http()
