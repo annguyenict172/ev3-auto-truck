@@ -26,6 +26,7 @@ def communicate_with_server():
     server_sock.listen(1)
     
     count_temp = -1
+    print("Beginning to connect with server")
     while True:
         try:
             client_sock, address = server_sock.accept()
