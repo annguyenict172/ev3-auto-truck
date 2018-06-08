@@ -14,10 +14,6 @@ cl = ColorSensor()
 assert cl.connected, "Connect a color sensor to any sensor port"
 cl.mode='RGB-RAW'  # set mode to measure color ID
 
-us = UltrasonicSensor()
-assert us.connected, "Connect a single US sensor to any sensor port"
-us.mode='US-DIST-CM'  # Put the US sensor into distance mode.
-
 btn=Button()
 
 
