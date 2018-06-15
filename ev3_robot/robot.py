@@ -115,8 +115,8 @@ while run:
     blue = cl.value(2)
     
     # The speed of two Large motor
-    a = (red+green+blue)//3
-    b = 255 - a
+    b = (red+green+blue)//3
+    a = 255 - a
     
     R = red - (blue+green)//2
     #G = green - (red+blue)//2
@@ -128,15 +128,15 @@ while run:
         mC.stop()
         run = False
     else:
-        if B >= 100: # arrive blue point
+        if B >= 100 and red >= 80: # arrive blue point
             count += count_add
             mB.stop()
             mC.stop()
             sleep(1)
             mD.run_to_rel_pos(position_sp=-45, speed_sp=100)
             sleep(3)
-            mB.run_timed(time_sp=5000, speed_sp=10)
-            mC.run_timed(time_sp=5000, speed_sp=100)
+            mC.run_timed(time_sp=4000, speed_sp=-100)
+            mB.run_timed(time_sp=4000, speed_sp=100)
             sleep(5)
         
         
@@ -148,8 +148,8 @@ while run:
                 if count == warehouse_point:
                     mB.stop()
                     mC.stop()
-                    mB.run_timed(time_sp=2500, speed_sp=100)
-                    mC.run_timed(time_sp=2500, speed_sp=-30)
+                    mB.run_timed(time_sp=1500, speed_sp=100)
+                    mC.run_timed(time_sp=1500, speed_sp=-30)
                     sleep(2.5)
                     continue
                 elif count == 4 or count == 6:
